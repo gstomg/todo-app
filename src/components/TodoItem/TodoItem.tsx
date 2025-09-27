@@ -37,7 +37,7 @@ export function TodoItem({
       </button>
       <button onClick={() => 
         onDelete(todo.id)}>Удалить
-        <img src="/src/assets/delete-icon.svg" alt="Удалить" />
+        <img src="../assets/delete-icon.svg" alt="Удалить" />
       </button>
 
     </div>
