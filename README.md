@@ -1,69 +1,77 @@
-# React + TypeScript + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Простое приложение для управления задачами, созданное с помощью React, TypeScript и Vite.
 
-Currently, two official plugins are available:
+## Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ Добавление новых задач
+- ✏️ Редактирование существующих задач
+- 🗑️ Удаление задач
+- 💾 Сохранение в localStorage
+- 🎨 Современный и отзывчивый дизайн
 
-## Expanding the ESLint configuration
+## Технологии
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19
+- TypeScript
+- Vite
+- Material-UI
+- Redux Toolkit
+- Styled Components
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Установка и запуск
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+```bash
+# Установка зависимостей
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Запуск в режиме разработки
+npm run dev
+
+# Сборка для продакшена
+npm run build
+
+# Предварительный просмотр сборки
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Деплой на GitHub Pages
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Проект настроен для автоматического деплоя на GitHub Pages:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Автоматический деплой**: При каждом push в ветку `main` GitHub Actions автоматически собирает и деплоит проект
+2. **Ручной деплой**: Используйте команду `npm run deploy` для ручного деплоя
+
+### Настройка GitHub Pages
+
+1. Перейдите в настройки репозитория на GitHub
+2. В разделе "Pages" выберите источник "GitHub Actions"
+3. Убедитесь, что workflow файл `.github/workflows/deploy.yml` присутствует в репозитории
+
+### URL проекта
+
+После деплоя приложение будет доступно по адресу:
+`https://gstomg.github.io/todo-app/`
+
+## Структура проекта
+
 ```
+src/
+├── components/          # React компоненты
+│   ├── AddTodo/        # Компонент добавления задач
+│   ├── EditTodo/       # Компонент редактирования задач
+│   ├── TodoItem/       # Компонент отдельной задачи
+│   └── TodoList/       # Список задач
+├── types/              # TypeScript типы
+├── utils/              # Утилиты (localStorage, темы)
+└── App.tsx             # Главный компонент
+```
+
+## Разработка
+
+Проект использует современные инструменты разработки:
+
+- **Vite** - быстрый сборщик и dev-сервер
+- **TypeScript** - типизированный JavaScript
+- **ESLint** - линтер для проверки кода
+- **Material-UI** - компоненты пользовательского интерфейса
