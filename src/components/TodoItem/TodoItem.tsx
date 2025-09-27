@@ -1,44 +1,45 @@
 import type { Todo } from '../../types/todo';
 
+//пропсы, что получает компонент от родителя
 interface TodoItemProps {
-  todo: Todo;
-  completedTodo: (id: number) => void;
-  onDelete: (id: number) => void;
-  onEdit: (id: number, text: string) => void;
+  todo: Todo; //объект задачи
+  completedTodo: (id: number) => void; //для чекбокса
+  onDelete: (id: number) => void; //для удаления
+  onEdit: (id: number, text: string) => void; //для редактирования
 }
 
-export function TodoItem({ todo, completedTodo, onDelete, onEdit }: TodoItemProps) {
-  return (
-    <li style={{
-      display: 'grid',
-      gridTemplateColumns: 'auto 1fr auto',
-      alignItems: 'start',
-      gap: 8,
-      padding: '8px 12px',
-      border: '1px solid var(--border)',
-      borderRadius: 8,
-      background: 'var(--surface)',
-      marginBottom: 8,
-      width: '100%',
-      textAlign: 'left'
-    }}>
-  <input
-    type="checkbox"
-    checked={todo.completed}
-    onChange={() => completedTodo(todo.id)}
-  />
-  <span style={{
-    overflow: 'visible',
-    whiteSpace: 'normal',
-    wordBreak: 'break-word'
-  }}>
-    {todo.text}
-  </span>
+export function TodoItem({
+  todo, 
+  completedTodo,
+  onDelete,
+  onEdit 
+}: TodoItemProps) {
 
-  <div style={{ display: 'flex', gap: 8 }}>
-  <button onClick={() => onEdit(todo.id, todo.text)}>Редактировать</button>
-  <button onClick={() => onDelete(todo.id)}>Удалить</button>
-</div>
-</li>
+  return (
+  <li className="todo-item">
+
+    <input
+      type="checkbox"
+      checked={todo.completed} //статус выполнения из объекта todo
+      onChange={() => completedTodo(todo.id)} 
+      //при изменении вызываем функцию родителя, родитель меняет статус
+    />
+
+    <span className="todo-text">
+      {todo.text}
+    </span>
+
+    <div className="todo-actions">
+
+      <button onClick={() => /*передаем айди и текст рдителю, вызываем окно*/ 
+        onEdit(todo.id, todo.text)}>
+          Редактировать
+      </button>
+      <button onClick={() => 
+        onDelete(todo.id)}>Удалить
+      </button>
+
+    </div>
+  </li>
   );
 }

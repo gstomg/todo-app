@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'; //состояние и эффекты
-import './App.css'; //стили
+import { useEffect, useState } from 'react'; 
+import './App.css'; 
 import { getTodosFromStorage, saveTodosToStorage } from './utils/localStorage'; 
 import { AddTodo } from './components/AddTodo/AddTodo';
 import { TodoList } from './components/TodoList/TodoList';
@@ -103,8 +103,8 @@ const saveEdit = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <h2 style={{ margin: 0 }}>ToDo</h2>
+      <div className="app-header">
+        <h2 className="app-title">ToDo</h2>
         <button onClick={() => setThemeState(prev => toggleTheme(prev))} /* при клике - возьми текущее значение тему и вызови переключатель*/>
           {theme === 'light' ? 'Тёмная тема' : 'Светлая тема'/* если тема светлая по факту значение, то надпись темная и наоборот*/}
         </button>
@@ -113,7 +113,7 @@ const saveEdit = () => {
       {/* Компонент добавления отобразить компонент AddTodo и передать ему функцию addTodo как пропс с названием onAdd */}
       <AddTodo onAdd={addTodo} /> 
       
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', margin: '12px 0 16px' }}>
+      <div className="controls-container">
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as 'newtask' | 'oldtask')}/* фильтр отображения выбранного значения */

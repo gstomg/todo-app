@@ -1,45 +1,36 @@
 interface EditTodoProps {
-  isOpen: boolean;
-  editText: string;
-  onTextChange: (text: string) => void;
-  onSave: () => void;
+  isOpen: boolean; //отвечает за открытие окна редактирования
+  editText: string; //текст редакт-й задачи
+  onTextChange: (text: string) => void; //при изменении текста
+  onSave: () => void; 
   onCancel: () => void;
 }
 
-export function EditTodo({ isOpen, editText, onTextChange, onSave, onCancel }: EditTodoProps) {
+
+export function EditTodo({ 
+  isOpen, 
+  editText,
+  onTextChange,
+  onSave,
+  onCancel 
+  }: EditTodoProps) {
+    //если окно не открыто, то не отрисовываем
   if (!isOpen) return null;
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(0,0,0,0.5)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      zIndex: 1000
-    }}>
-      <div style={{
-        backgroundColor: 'var(--surface)',
-        color: 'var(--text)',
-        padding: 20,
-        borderRadius: 8,
-        border: '1px solid var(--border)',
-        minWidth: 300
-      }}>
+    <div className="edit-todo-overlay">
+      <div className="edit-todo-modal">
         <h3>Редактировать задачу</h3>
+         {/* Когда пользователь печатает - ВЫЗЫВАЕМ ФУНКЦИЮ РОДИТЕЛЯ */}
         <input
           type="text"
-          value={editText}
-          onChange={(e) => onTextChange(e.target.value)}
-          style={{ width: '100%', padding: 8, marginBottom: 16 }}
+          value={editText} //текущее значение
+          onChange={(e) => onTextChange(e.target.value)} // → setCurrentEditText()
+          //при изменении текста вызываем коллбэк
+          className="edit-todo-input"
           autoFocus
         />
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={onSave}>Сохранить</button>
+        <div className="edit-todo-buttons"> 
           <button onClick={onCancel}>Отмена</button>
         </div>
       </div>

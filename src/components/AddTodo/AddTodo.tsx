@@ -1,23 +1,23 @@
 import { useState } from "react";
 
-interface AddTodoProps {
-    onAdd: (text: string) => void;
+interface AddTodoProps { //компонент ожидает функцию
+    onAdd: (text: string) => void; //принимает текст задачи и не возвращает ничего
 }
 
 export function AddTodo({ onAdd }:AddTodoProps){
     //состояние для хранения задачи
-    const [text, setText] = useState('');
+    const [text, setText] = useState(''); 
     const [error, setError] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {//обработка события
         e.preventDefault(); //отмена перезагрузки стр
     
-    const trimmed = text.trim();
-    if (!trimmed) {
+    const trimmed = text.trim(); 
+    if (!trimmed) {//проверка на пустоту
         setError(true);
         return;
     }
-    onAdd(trimmed);
+    onAdd(trimmed); //передача задачи родителю
     setText('');
     setError(false);
 };
@@ -25,27 +25,21 @@ export function AddTodo({ onAdd }:AddTodoProps){
     return (
         <form
             onSubmit={handleSubmit}
-            style={{
-                display: 'flex',
-                gap: 12,
-                marginBottom: 16,
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                width: '100%'            // ← добавить
-            }}
+            className="add-todo-form"
         >
             <input
                 type="text"
-                value={text}
+                value={text} /*значение введенное из состояния*/
                 onChange={(e) => {
-                    setText(e.target.value);
-                    if (error) setError(false);
+                    setText(e.target.value);/*обновляем текст*/
+                    if (error) setError(false);/*убираем ошибку при новом вводе*/
                 }}
                 placeholder="Введите задачу"
-                style={{ flex: 1, minWidth: 280, width: '100%', padding: 8 }}  // ← width: '100%'
+                className="add-todo-input"
             />
-            {error && (
-                <span style={{ color: 'red', fontSize: 12 }}>
+            
+            {error && ( /*вывод ошибки*/
+                <span className="add-todo-error">
                 Поле не может быть пустым
                 </span>
             )}
